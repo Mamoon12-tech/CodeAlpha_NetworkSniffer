@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -19,995 +19,293 @@
     --mono:      'Space Mono', monospace;
     --sans:      'Syne', sans-serif;
   }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.6; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(0,255,136,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,136,0.03) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; z-index: 0; }
+  body::after { content: ''; position: fixed; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px); pointer-events: none; z-index: 0; }
+  .container { max-width: 900px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  /* ── GRID BACKGROUND ── */
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image:
-      linear-gradient(rgba(0,255,136,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,255,136,0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* ── SCANLINE OVERLAY ── */
-  body::after {
-    content: '';
-    position: fixed; inset: 0;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0,0,0,0.08) 2px,
-      rgba(0,0,0,0.08) 4px
-    );
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 24px;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* ══════════════════════════════
-     HERO
-  ══════════════════════════════ */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 80px 0 60px;
-    position: relative;
-  }
-
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(0,255,136,0.08);
-    border: 1px solid rgba(0,255,136,0.25);
-    border-radius: 40px;
-    padding: 6px 16px;
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 32px;
-    animation: fadeSlideDown 0.6s ease both;
-  }
-
-  .badge-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: var(--accent);
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.7); }
-  }
-
-  .hero-title {
-    font-family: var(--sans);
-    font-size: clamp(3rem, 8vw, 6rem);
-    font-weight: 800;
-    line-height: 1;
-    letter-spacing: -0.03em;
-    animation: fadeSlideDown 0.7s 0.1s ease both;
-  }
-
-  .hero-title .net  { color: var(--accent); }
-  .hero-title .scope { color: var(--text); }
-
-  .hero-subtitle {
-    font-family: var(--mono);
-    font-size: 0.9rem;
-    color: var(--dim);
-    margin-top: 20px;
-    max-width: 560px;
-    animation: fadeSlideDown 0.7s 0.2s ease both;
-  }
-
+  /* HERO */
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 80px 0 60px; }
+  .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(0,255,136,0.08); border: 1px solid rgba(0,255,136,0.25); border-radius: 40px; padding: 6px 16px; font-family: var(--mono); font-size: 0.72rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 32px; animation: fadeSlideDown 0.6s ease both; }
+  .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.7); } }
+  .hero-title { font-family: var(--sans); font-size: clamp(3rem, 8vw, 6rem); font-weight: 800; line-height: 1; letter-spacing: -0.03em; animation: fadeSlideDown 0.7s 0.1s ease both; }
+  .hero-title .net { color: var(--accent); }
+  .hero-subtitle { font-family: var(--mono); font-size: 0.9rem; color: var(--dim); margin-top: 20px; max-width: 560px; animation: fadeSlideDown 0.7s 0.2s ease both; }
   .hero-subtitle span { color: var(--accent2); }
-
-  .hero-stats {
-    display: flex;
-    gap: 40px;
-    margin-top: 48px;
-    animation: fadeSlideDown 0.7s 0.3s ease both;
-  }
-
+  .hero-stats { display: flex; gap: 40px; margin-top: 48px; animation: fadeSlideDown 0.7s 0.3s ease both; flex-wrap: wrap; }
   .stat { display: flex; flex-direction: column; gap: 4px; }
-  .stat-num {
-    font-family: var(--mono);
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--accent);
-    line-height: 1;
-  }
-  .stat-label {
-    font-size: 0.72rem;
-    color: var(--dim);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
+  .stat-num { font-family: var(--mono); font-size: 1.8rem; font-weight: 700; color: var(--accent); line-height: 1; }
+  .stat-label { font-size: 0.72rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.1em; }
+  .scroll-cue { margin-top: 60px; display: flex; align-items: center; gap: 12px; font-family: var(--mono); font-size: 0.72rem; color: var(--dim); animation: fadeSlideDown 0.7s 0.5s ease both; }
+  .scroll-line { width: 40px; height: 1px; background: var(--border); }
 
-  /* ── SCROLL CUE ── */
-  .scroll-cue {
-    margin-top: 60px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    color: var(--dim);
-    animation: fadeSlideDown 0.7s 0.5s ease both;
-  }
-  .scroll-line {
-    width: 40px; height: 1px;
-    background: var(--border);
-  }
+  /* SECTIONS */
+  .section-label { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 16px; }
+  .section-title { font-size: 2rem; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.02em; }
+  .section-sub { color: var(--dim); font-size: 0.9rem; margin-bottom: 40px; }
 
-  /* ══════════════════════════════
-     TERMINAL DEMO
-  ══════════════════════════════ */
-  .terminal-section {
-    padding: 80px 0;
-  }
-
-  .section-label {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    margin-bottom: 16px;
-  }
-
-  .section-title {
-    font-size: 2rem;
-    font-weight: 800;
-    margin-bottom: 8px;
-    letter-spacing: -0.02em;
-  }
-
-  .section-sub {
-    color: var(--dim);
-    font-size: 0.9rem;
-    margin-bottom: 40px;
-  }
-
-  .terminal {
-    background: #0a0e14;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 0 60px rgba(0,255,136,0.05), 0 0 0 1px rgba(255,255,255,0.02);
-  }
-
-  .terminal-bar {
-    background: #111820;
-    padding: 12px 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border-bottom: 1px solid var(--border);
-  }
-
+  /* TERMINAL */
+  .terminal-section { padding: 80px 0; }
+  .terminal { background: #0a0e14; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: 0 0 60px rgba(0,255,136,0.05); }
+  .terminal-bar { background: #111820; padding: 12px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border); }
   .dot { width: 12px; height: 12px; border-radius: 50%; }
-  .dot-r { background: #ff5f57; }
-  .dot-y { background: #febc2e; }
-  .dot-g { background: #28c840; }
-
-  .terminal-title {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    color: var(--dim);
-    margin-left: 8px;
-  }
-
-  .terminal-body {
-    padding: 24px;
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    line-height: 2;
-    overflow-x: auto;
-  }
-
-  .t-dim   { color: #3d4f61; }
-  .t-green { color: var(--accent); }
-  .t-blue  { color: var(--accent2); }
-  .t-red   { color: var(--accent3); }
-  .t-yel   { color: var(--yellow); }
-  .t-white { color: #e6edf3; }
-  .t-bold  { font-weight: 700; }
-
+  .dot-r { background: #ff5f57; } .dot-y { background: #febc2e; } .dot-g { background: #28c840; }
+  .terminal-title { font-family: var(--mono); font-size: 0.72rem; color: var(--dim); margin-left: 8px; }
+  .terminal-body { padding: 24px; font-family: var(--mono); font-size: 0.8rem; line-height: 2; overflow-x: auto; }
+  .t-dim { color: #3d4f61; } .t-green { color: var(--accent); } .t-blue { color: var(--accent2); }
+  .t-red { color: var(--accent3); } .t-yel { color: var(--yellow); } .t-white { color: #e6edf3; } .t-bold { font-weight: 700; }
   .t-line { display: block; white-space: pre; }
 
-  /* ══════════════════════════════
-     CONCEPT CARDS
-  ══════════════════════════════ */
+  /* RUN STEPS */
+  .run-section { padding: 80px 0; }
+  .steps-list { margin-top: 32px; display: flex; flex-direction: column; gap: 16px; }
+  .step-item { display: flex; align-items: flex-start; gap: 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; transition: border-color 0.2s; }
+  .step-item:hover { border-color: rgba(0,255,136,0.25); }
+  .step-num { font-family: var(--mono); font-size: 1.2rem; font-weight: 700; color: var(--accent); min-width: 32px; line-height: 1; padding-top: 2px; }
+  .step-content { flex: 1; }
+  .step-title { font-weight: 700; margin-bottom: 6px; }
+  .step-cmd { font-family: var(--mono); font-size: 0.8rem; color: var(--accent); background: rgba(0,255,136,0.07); border: 1px solid rgba(0,255,136,0.15); border-radius: 6px; padding: 8px 14px; margin-top: 8px; display: inline-block; }
+  .step-note { font-size: 0.8rem; color: var(--dim); margin-top: 6px; }
+
+  /* CARDS */
   .concepts-section { padding: 80px 0; }
-
-  .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 16px;
-    margin-top: 40px;
-  }
-
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 24px;
-    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, var(--card-accent, var(--accent)) 0%, transparent 60%);
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-
-  .card:hover {
-    border-color: var(--card-accent, var(--accent));
-    transform: translateY(-3px);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-  }
+  .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 40px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 24px; transition: border-color 0.2s, transform 0.2s; position: relative; overflow: hidden; }
+  .card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--card-accent, var(--accent)) 0%, transparent 60%); opacity: 0; transition: opacity 0.2s; }
+  .card:hover { border-color: var(--card-accent, var(--accent)); transform: translateY(-3px); }
   .card:hover::before { opacity: 0.05; }
+  .card-icon { font-size: 1.8rem; margin-bottom: 12px; position: relative; }
+  .card-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 8px; position: relative; }
+  .card-desc { font-size: 0.8rem; color: var(--dim); line-height: 1.6; position: relative; }
+  .card-tag { font-family: var(--mono); font-size: 0.65rem; color: var(--card-accent, var(--accent)); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 12px; position: relative; }
 
-  .card-icon {
-    font-size: 1.8rem;
-    margin-bottom: 12px;
-    position: relative;
-  }
-
-  .card-title {
-    font-weight: 700;
-    font-size: 0.95rem;
-    margin-bottom: 8px;
-    position: relative;
-  }
-
-  .card-desc {
-    font-size: 0.8rem;
-    color: var(--dim);
-    line-height: 1.6;
-    position: relative;
-  }
-
-  .card-tag {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    color: var(--card-accent, var(--accent));
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-top: 12px;
-    position: relative;
-  }
-
-  /* ══════════════════════════════
-     CODE SECTION
-  ══════════════════════════════ */
-  .code-section { padding: 80px 0; }
-
-  .code-tabs {
-    display: flex;
-    gap: 4px;
-    margin-bottom: 0;
-    background: #111820;
-    border: 1px solid var(--border);
-    border-bottom: none;
-    border-radius: 10px 10px 0 0;
-    padding: 8px 8px 0;
-  }
-
-  .tab {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    padding: 8px 16px;
-    border-radius: 6px 6px 0 0;
-    cursor: pointer;
-    color: var(--dim);
-    border: 1px solid transparent;
-    border-bottom: none;
-    transition: color 0.15s, background 0.15s;
-  }
-
-  .tab.active {
-    background: #0a0e14;
-    color: var(--accent);
-    border-color: var(--border);
-    border-bottom-color: #0a0e14;
-    margin-bottom: -1px;
-  }
-
-  .code-block {
-    background: #0a0e14;
-    border: 1px solid var(--border);
-    border-radius: 0 0 10px 10px;
-    padding: 24px;
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    line-height: 1.9;
-    overflow-x: auto;
-  }
-
-  .code-block .comment { color: #3d4f61; }
-  .code-block .keyword { color: var(--accent2); }
-  .code-block .string  { color: var(--yellow); }
-  .code-block .func    { color: var(--accent); }
-  .code-block .num     { color: var(--accent3); }
-  .code-block .builtin { color: #c792ea; }
-
-  /* ══════════════════════════════
-     HOW IT WORKS — TIMELINE
-  ══════════════════════════════ */
-  .how-section { padding: 80px 0; }
-
-  .timeline {
-    position: relative;
-    margin-top: 40px;
-    padding-left: 32px;
-  }
-
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 11px;
-    top: 0; bottom: 0;
-    width: 2px;
-    background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
-  }
-
-  .tl-step {
-    position: relative;
-    margin-bottom: 40px;
-  }
-
-  .tl-dot {
-    position: absolute;
-    left: -37px;
-    top: 4px;
-    width: 16px; height: 16px;
-    border-radius: 50%;
-    background: var(--bg);
-    border: 2px solid var(--accent);
-    display: flex; align-items: center; justify-content: center;
-  }
-  .tl-dot::after {
-    content: '';
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-  }
-
-  .tl-num {
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-
-  .tl-title {
-    font-weight: 700;
-    font-size: 1rem;
-    margin-bottom: 6px;
-  }
-
-  .tl-desc {
-    font-size: 0.85rem;
-    color: var(--dim);
-    max-width: 540px;
-  }
-
-  .tl-code {
-    display: inline-block;
-    background: rgba(0,255,136,0.07);
-    border: 1px solid rgba(0,255,136,0.15);
-    border-radius: 4px;
-    padding: 1px 8px;
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    color: var(--accent);
-    margin-top: 8px;
-  }
-
-  /* ══════════════════════════════
-     PROTOCOL TABLE
-  ══════════════════════════════ */
+  /* PROTOCOL TABLE */
   .proto-section { padding: 80px 0; }
-
-  .proto-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 32px;
-    font-size: 0.85rem;
-  }
-
-  .proto-table th {
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--dim);
-    text-align: left;
-    padding: 10px 16px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .proto-table td {
-    padding: 14px 16px;
-    border-bottom: 1px solid rgba(26,35,50,0.5);
-    vertical-align: top;
-  }
-
+  .proto-table { width: 100%; border-collapse: collapse; margin-top: 32px; font-size: 0.85rem; }
+  .proto-table th { font-family: var(--mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--dim); text-align: left; padding: 10px 16px; border-bottom: 1px solid var(--border); }
+  .proto-table td { padding: 14px 16px; border-bottom: 1px solid rgba(26,35,50,0.5); vertical-align: top; }
   .proto-table tr:hover td { background: rgba(255,255,255,0.015); }
-
-  .proto-badge {
-    display: inline-block;
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    font-weight: 700;
-    padding: 3px 10px;
-    border-radius: 4px;
-    letter-spacing: 0.05em;
-  }
-
-  .badge-tcp  { background: rgba(0,255,136,0.12); color: var(--accent); }
-  .badge-udp  { background: rgba(255,209,102,0.12); color: var(--yellow); }
+  .proto-badge { display: inline-block; font-family: var(--mono); font-size: 0.72rem; font-weight: 700; padding: 3px 10px; border-radius: 4px; }
+  .badge-tcp { background: rgba(0,255,136,0.12); color: var(--accent); }
+  .badge-udp { background: rgba(255,209,102,0.12); color: var(--yellow); }
   .badge-icmp { background: rgba(0,207,255,0.12); color: var(--accent2); }
   .badge-other { background: rgba(255,107,107,0.12); color: var(--accent3); }
 
-  /* ══════════════════════════════
-     RUN GUIDE
-  ══════════════════════════════ */
-  .run-section { padding: 80px 0; }
+  /* HOW IT WORKS */
+  .how-section { padding: 80px 0; }
+  .timeline { position: relative; margin-top: 40px; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 11px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent); }
+  .tl-step { position: relative; margin-bottom: 40px; }
+  .tl-dot { position: absolute; left: -37px; top: 4px; width: 16px; height: 16px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center; }
+  .tl-dot::after { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  .tl-num { font-family: var(--mono); font-size: 0.68rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+  .tl-title { font-weight: 700; font-size: 1rem; margin-bottom: 6px; }
+  .tl-desc { font-size: 0.85rem; color: var(--dim); max-width: 540px; }
+  .tl-code { display: inline-block; background: rgba(0,255,136,0.07); border: 1px solid rgba(0,255,136,0.15); border-radius: 4px; padding: 1px 8px; font-family: var(--mono); font-size: 0.75rem; color: var(--accent); margin-top: 8px; }
 
-  .steps-list { margin-top: 32px; display: flex; flex-direction: column; gap: 16px; }
-
-  .step-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 20px 24px;
-    transition: border-color 0.2s;
-  }
-  .step-item:hover { border-color: rgba(0,255,136,0.25); }
-
-  .step-num {
-    font-family: var(--mono);
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--accent);
-    min-width: 32px;
-    line-height: 1;
-    padding-top: 2px;
-  }
-
-  .step-content { flex: 1; }
-  .step-title { font-weight: 700; margin-bottom: 6px; }
-  .step-cmd {
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    color: var(--accent);
-    background: rgba(0,255,136,0.07);
-    border: 1px solid rgba(0,255,136,0.15);
-    border-radius: 6px;
-    padding: 8px 14px;
-    margin-top: 8px;
-    display: inline-block;
-  }
-  .step-note { font-size: 0.8rem; color: var(--dim); margin-top: 6px; }
-
-  /* ══════════════════════════════
-     FOOTER
-  ══════════════════════════════ */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 40px 0;
-    margin-top: 40px;
-  }
-
-  .footer-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-
-  .footer-brand {
-    font-weight: 800;
-    font-size: 1.1rem;
-    letter-spacing: -0.02em;
-  }
+  /* FOOTER */
+  footer { border-top: 1px solid var(--border); padding: 40px 0; margin-top: 40px; }
+  .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .footer-brand { font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; }
   .footer-brand .net { color: var(--accent); }
-
-  .footer-meta {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    color: var(--dim);
-    text-align: right;
-  }
-
+  .footer-meta { font-family: var(--mono); font-size: 0.72rem; color: var(--dim); text-align: right; }
   .footer-meta span { color: var(--accent2); }
 
-  /* ══════════════════════════════
-     ANIMATIONS
-  ══════════════════════════════ */
-  @keyframes fadeSlideDown {
-    from { opacity: 0; transform: translateY(-16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Scrollbar */
+  @keyframes fadeSlideDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
   ::-webkit-scrollbar { width: 6px; height: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-
-  @media (max-width: 600px) {
-    .hero-stats { flex-wrap: wrap; gap: 24px; }
-    .footer-inner { flex-direction: column; align-items: flex-start; }
-    .footer-meta { text-align: left; }
-  }
 </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════
-     HERO
-══════════════════════════════════════════ -->
 <section class="hero">
   <div class="container">
-    <div class="badge">
-      <span class="badge-dot"></span>
-      CodeAlpha Internship &nbsp;·&nbsp; Cybersecurity &nbsp;·&nbsp; Task 01
-    </div>
-
-    <h1 class="hero-title">
-      <span class="net">Net</span><span class="scope">Scope</span>
-    </h1>
-
-    <p class="hero-subtitle">
-      A beginner-friendly Python network sniffer that captures live packets<br>
-      and decodes them into <span>human-readable intelligence</span> — no Wireshark needed.
-    </p>
-
+    <div class="badge"><span class="badge-dot"></span>CodeAlpha Internship &nbsp;·&nbsp; Cybersecurity &nbsp;·&nbsp; Task 01</div>
+    <h1 class="hero-title"><span class="net">Net</span>Scope</h1>
+    <p class="hero-subtitle">A beginner-friendly Python network sniffer that captures live packets<br>and decodes them into <span>human-readable intelligence</span> — no Wireshark needed.</p>
     <div class="hero-stats">
-      <div class="stat">
-        <span class="stat-num">0</span>
-        <span class="stat-label">External Libraries</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num">3</span>
-        <span class="stat-label">Protocols Decoded</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num">~300</span>
-        <span class="stat-label">Lines of Code</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num">1</span>
-        <span class="stat-label">Command to Run</span>
-      </div>
+      <div class="stat"><span class="stat-num">0</span><span class="stat-label">External Libraries</span></div>
+      <div class="stat"><span class="stat-num">3</span><span class="stat-label">Protocols Decoded</span></div>
+      <div class="stat"><span class="stat-num">~300</span><span class="stat-label">Lines of Code</span></div>
+      <div class="stat"><span class="stat-num">3</span><span class="stat-label">Steps to Run</span></div>
     </div>
-
-    <div class="scroll-cue">
-      <span class="scroll-line"></span>
-      scroll to explore
-    </div>
+    <div class="scroll-cue"><span class="scroll-line"></span>scroll to explore</div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     LIVE TERMINAL DEMO
-══════════════════════════════════════════ -->
 <section class="terminal-section reveal">
   <div class="container">
     <p class="section-label">// output preview</p>
     <h2 class="section-title">What You'll See</h2>
     <p class="section-sub">Real terminal output from a live capture session.</p>
-
     <div class="terminal">
       <div class="terminal-bar">
-        <span class="dot dot-r"></span>
-        <span class="dot dot-y"></span>
-        <span class="dot dot-g"></span>
-        <span class="terminal-title">mamoon@linux: ~/CodeAlpha_NetworkSniffer</span>
+        <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+        <span class="terminal-title">mamoon@linux: ~/NetworkSniffer</span>
       </div>
       <div class="terminal-body">
 <span class="t-line"><span class="t-green t-bold">$ sudo python3 sniffer.py</span></span>
 <span class="t-line"> </span>
-<span class="t-line"><span class="t-green">  ███╗   ██╗███████╗████████╗    ███████╗ ██████╗ ██████╗ ██████╗ ███████╗</span></span>
-<span class="t-line"><span class="t-green">  ████╗  ██║██╔════╝╚══██╔══╝    ██╔════╝██╔════╝██╔═══██╗██╔══██╗██╔════╝</span></span>
-<span class="t-line"><span class="t-dim">  ... (ASCII art banner) ...</span></span>
-<span class="t-line"> </span>
-<span class="t-line"><span class="t-yel">        🔬  Basic Network Sniffer  |  CodeAlpha Internship — Task 1  🔬</span></span>
+<span class="t-line"><span class="t-green t-bold">  ██████╗ NetScope — Basic Network Sniffer</span></span>
+<span class="t-line"><span class="t-yel">        🔬  CodeAlpha Internship — Task 1  |  Author: Mamoon  🔬</span></span>
 <span class="t-line"> </span>
 <span class="t-line"><span class="t-green">  ✅ Sniffer active!  Press Ctrl+C to stop.</span></span>
-<span class="t-line"><span class="t-dim">  ──────────────────────────────────────────────────────────────────────</span></span>
+<span class="t-line"><span class="t-dim">  ──────────────────────────────────────────────────────────</span></span>
 <span class="t-line"> </span>
-<span class="t-line"><span class="t-green t-bold">  ══════════════════════════════════════════════════════════════════════</span></span>
-<span class="t-line"><span class="t-green t-bold">  [0001] 14:32:07  │  TCP     │  192.168.1.4  →  142.250.80.46</span></span>
-<span class="t-line"><span class="t-green">  Port  : 52431 → HTTPS    Flags: SYN</span></span>
-<span class="t-line"><span class="t-dim">  Data  : .....GET /search?q=network+sniffer HTTP/1.1.Host: google.com</span></span>
+<span class="t-line"><span class="t-green t-bold">  [0001] 14:32:07  │  TCP   │  192.168.1.4  →  142.250.80.46</span></span>
+<span class="t-line"><span class="t-green">  Port  : 52431 → HTTPS    Flags: SYN ACK</span></span>
+<span class="t-line"><span class="t-dim">  Data  : GET /search?q=network+sniffer HTTP/1.1</span></span>
 <span class="t-line"> </span>
-<span class="t-line"><span class="t-yel t-bold">  ══════════════════════════════════════════════════════════════════════</span></span>
-<span class="t-line"><span class="t-yel t-bold">  [0002] 14:32:07  │  UDP     │  192.168.1.4  →  8.8.8.8</span></span>
+<span class="t-line"><span class="t-yel t-bold">  [0002] 14:32:07  │  UDP   │  192.168.1.4  →  8.8.8.8</span></span>
 <span class="t-line"><span class="t-yel">  Port  : 54832 → DNS    Length: 62</span></span>
-<span class="t-line"><span class="t-dim">  Data  : .....google.com.....</span></span>
 <span class="t-line"> </span>
-<span class="t-line"><span class="t-blue t-bold">  ══════════════════════════════════════════════════════════════════════</span></span>
-<span class="t-line"><span class="t-blue t-bold">  [0003] 14:32:08  │  ICMP    │  192.168.1.4  →  1.1.1.1</span></span>
+<span class="t-line"><span class="t-blue t-bold">  [0003] 14:32:08  │  ICMP  │  192.168.1.4  →  1.1.1.1</span></span>
 <span class="t-line"><span class="t-blue">  Type  : Echo Request (Ping 🏓)</span></span>
-<span class="t-line"> </span>
-<span class="t-line"><span class="t-dim">  ... capturing ...</span></span>
 <span class="t-line"> </span>
 <span class="t-line"><span class="t-yel">  👋 Sniffer stopped by user.</span></span>
 <span class="t-line"> </span>
-<span class="t-line"><span class="t-green t-bold">  ══════════════════════════  SESSION SUMMARY  ══════════════════════════</span></span>
-<span class="t-line"><span class="t-white">  TOTAL PACKETS        : <span class="t-bold">247</span></span></span>
-<span class="t-line"><span class="t-green">  TCP                  : 189</span></span>
-<span class="t-line"><span class="t-yel">  UDP                  : 43</span></span>
-<span class="t-line"><span class="t-blue">  ICMP                 : 12</span></span>
-<span class="t-line"><span class="t-dim">  OTHER                : 3</span></span>
-<span class="t-line"> </span>
+<span class="t-line"><span class="t-green t-bold">  SESSION SUMMARY</span></span>
+<span class="t-line"><span class="t-white">  TOTAL : <span class="t-bold">247</span>  │  TCP: <span class="t-green">189</span>  │  UDP: <span class="t-yel">43</span>  │  ICMP: <span class="t-blue">12</span></span></span>
 <span class="t-line"><span class="t-green">  ✅ Log saved → netscope_log_20250524_143208.txt</span></span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     HOW IT WORKS
-══════════════════════════════════════════ -->
+<section class="run-section reveal">
+  <div class="container">
+    <p class="section-label">// getting started</p>
+    <h2 class="section-title">Run It in 3 Steps</h2>
+    <p class="section-sub">No pip install. No setup.py. Just Python 3 and Linux.</p>
+    <div class="steps-list">
+      <div class="step-item">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <div class="step-title">Save the file to your Linux machine</div>
+          <div class="step-cmd">sniffer.py</div>
+          <div class="step-note">Download sniffer.py and place it anywhere on your Linux system or WSL terminal.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <div class="step-title">Give it execute permission</div>
+          <div class="step-cmd">chmod +x sniffer.py</div>
+          <div class="step-note">This tells Linux the file is allowed to run as a program.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <div class="step-title">Run it with sudo</div>
+          <div class="step-cmd">sudo python3 sniffer.py</div>
+          <div class="step-note">Press Ctrl+C to stop anytime. Session summary and log file save automatically.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="how-section reveal">
   <div class="container">
     <p class="section-label">// packet journey</p>
     <h2 class="section-title">How It Works</h2>
     <p class="section-sub">Every network packet passes through 3 layers. We peel each one.</p>
-
     <div class="timeline">
       <div class="tl-step">
         <div class="tl-dot"></div>
         <p class="tl-num">Step 01</p>
         <p class="tl-title">Open a Raw Socket</p>
-        <p class="tl-desc">We create a special <strong>raw socket</strong> — unlike normal sockets that only see data meant for your app, this one captures <em>every</em> packet on the network interface, regardless of where it's going.</p>
+        <p class="tl-desc">We create a special <strong>raw socket</strong> that captures every packet on the network interface, regardless of where it's going.</p>
         <span class="tl-code">socket.AF_PACKET + socket.SOCK_RAW</span>
       </div>
-
       <div class="tl-step">
         <div class="tl-dot"></div>
         <p class="tl-num">Step 02</p>
         <p class="tl-title">Parse the Ethernet Frame</p>
-        <p class="tl-desc">The outermost wrapper is the <strong>Ethernet frame</strong> (14 bytes). It tells us the MAC addresses of sender and receiver, and what kind of data is inside (IPv4, IPv6, ARP…).</p>
+        <p class="tl-desc">The outermost wrapper is the <strong>Ethernet frame</strong> (14 bytes). It tells us MAC addresses and what type of data is inside.</p>
         <span class="tl-code">struct.unpack("! 6s 6s H", data[:14])</span>
       </div>
-
       <div class="tl-step">
         <div class="tl-dot"></div>
         <p class="tl-num">Step 03</p>
         <p class="tl-title">Parse the IPv4 Header</p>
-        <p class="tl-desc">Inside the Ethernet frame sits the <strong>IP header</strong> (20 bytes). This gives us the Source IP, Destination IP, TTL (time-to-live), and the protocol number (6=TCP, 17=UDP, 1=ICMP).</p>
+        <p class="tl-desc">Inside sits the <strong>IP header</strong> (20 bytes) — Source IP, Destination IP, TTL, and protocol number (6=TCP, 17=UDP, 1=ICMP).</p>
         <span class="tl-code">struct.unpack("! 8x B B 2x 4s 4s", data[:20])</span>
       </div>
-
       <div class="tl-step">
         <div class="tl-dot"></div>
         <p class="tl-num">Step 04</p>
         <p class="tl-title">Parse TCP / UDP / ICMP</p>
-        <p class="tl-desc">Finally, we parse the <strong>transport layer</strong> to extract port numbers, TCP flags (SYN/ACK/FIN), and the actual payload data — the real message being sent.</p>
+        <p class="tl-desc">Finally we extract port numbers, TCP flags (SYN/ACK/FIN), and the actual payload — the real message being sent.</p>
         <span class="tl-code">struct.unpack("! H H L L H", tcp_data[:14])</span>
       </div>
-
       <div class="tl-step">
         <div class="tl-dot"></div>
         <p class="tl-num">Step 05</p>
         <p class="tl-title">Display + Log</p>
-        <p class="tl-desc">Everything is colour-coded and printed to the terminal in real time. When you stop the sniffer, stats are summarised and a <strong>.txt log file</strong> is saved automatically.</p>
+        <p class="tl-desc">Everything is colour-coded and printed live. When stopped, stats are summarised and a <strong>.txt log file</strong> is saved automatically.</p>
         <span class="tl-code">netscope_log_YYYYMMDD_HHMMSS.txt</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     CONCEPTS
-══════════════════════════════════════════ -->
 <section class="concepts-section reveal">
   <div class="container">
     <p class="section-label">// what you'll learn</p>
     <h2 class="section-title">Key Concepts</h2>
     <p class="section-sub">This project teaches real cybersecurity fundamentals — not just syntax.</p>
-
     <div class="cards-grid">
-      <div class="card" style="--card-accent: #00ff88;">
-        <div class="card-icon">🔌</div>
-        <div class="card-title">Raw Sockets</div>
-        <div class="card-desc">Bypass the OS filter and capture every single packet on the wire — the same technique used by tools like Wireshark and tcpdump.</div>
-        <div class="card-tag">socket.SOCK_RAW</div>
-      </div>
-
-      <div class="card" style="--card-accent: #00cfff;">
-        <div class="card-icon">📦</div>
-        <div class="card-title">Packet Structure</div>
-        <div class="card-desc">Every packet is just bytes. Learn how Ethernet → IP → TCP layers are stacked inside each other like envelopes inside envelopes.</div>
-        <div class="card-tag">struct.unpack()</div>
-      </div>
-
-      <div class="card" style="--card-accent: #ffd166;">
-        <div class="card-icon">🌐</div>
-        <div class="card-title">Network Protocols</div>
-        <div class="card-desc">Understand TCP (reliable), UDP (fast), and ICMP (control) — and know when the internet uses each one, and why.</div>
-        <div class="card-tag">TCP / UDP / ICMP</div>
-      </div>
-
-      <div class="card" style="--card-accent: #ff6b6b;">
-        <div class="card-icon">🚪</div>
-        <div class="card-title">Ports & Services</div>
-        <div class="card-desc">Port 443 is HTTPS. Port 22 is SSH. Port 53 is DNS. Learn how each service has its own "door" on a computer.</div>
-        <div class="card-tag">20+ port mappings</div>
-      </div>
-
-      <div class="card" style="--card-accent: #c792ea;">
-        <div class="card-icon">🔢</div>
-        <div class="card-title">Binary Parsing</div>
-        <div class="card-desc">Unpack raw bytes into numbers using Python's <code>struct</code> module — a skill used in reverse engineering and forensics.</div>
-        <div class="card-tag">big-endian bytes</div>
-      </div>
-
-      <div class="card" style="--card-accent: #00ff88;">
-        <div class="card-icon">🏳</div>
-        <div class="card-title">TCP Flags</div>
-        <div class="card-desc">SYN, ACK, FIN, RST, PSH, URG — these flags control every TCP connection handshake. See them in real traffic live.</div>
-        <div class="card-tag">bitmask operations</div>
-      </div>
+      <div class="card" style="--card-accent:#00ff88;"><div class="card-icon">🔌</div><div class="card-title">Raw Sockets</div><div class="card-desc">Bypass the OS filter and capture every single packet on the wire — same technique used by Wireshark and tcpdump.</div><div class="card-tag">socket.SOCK_RAW</div></div>
+      <div class="card" style="--card-accent:#00cfff;"><div class="card-icon">📦</div><div class="card-title">Packet Structure</div><div class="card-desc">Every packet is just bytes. Learn how Ethernet → IP → TCP layers are stacked inside each other like envelopes.</div><div class="card-tag">struct.unpack()</div></div>
+      <div class="card" style="--card-accent:#ffd166;"><div class="card-icon">🌐</div><div class="card-title">Network Protocols</div><div class="card-desc">Understand TCP (reliable), UDP (fast), and ICMP (control) — and know when the internet uses each one.</div><div class="card-tag">TCP / UDP / ICMP</div></div>
+      <div class="card" style="--card-accent:#ff6b6b;"><div class="card-icon">🚪</div><div class="card-title">Ports & Services</div><div class="card-desc">Port 443 = HTTPS. Port 22 = SSH. Port 53 = DNS. Learn how each service has its own door on a computer.</div><div class="card-tag">20+ port mappings</div></div>
+      <div class="card" style="--card-accent:#c792ea;"><div class="card-icon">🔢</div><div class="card-title">Binary Parsing</div><div class="card-desc">Unpack raw bytes into numbers using Python's struct module — a skill used in reverse engineering and forensics.</div><div class="card-tag">big-endian bytes</div></div>
+      <div class="card" style="--card-accent:#00ff88;"><div class="card-icon">🏳</div><div class="card-title">TCP Flags</div><div class="card-desc">SYN, ACK, FIN, RST, PSH, URG — these flags control every TCP connection. See them live in real traffic.</div><div class="card-tag">bitmask operations</div></div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     CODE SNIPPET
-══════════════════════════════════════════ -->
-<section class="code-section reveal">
-  <div class="container">
-    <p class="section-label">// core code</p>
-    <h2 class="section-title">Key Code Explained</h2>
-    <p class="section-sub">The most important piece — parsing the IPv4 header, annotated for beginners.</p>
-
-    <div class="code-tabs">
-      <div class="tab active">parse_ipv4()</div>
-    </div>
-    <div class="code-block">
-<span class="comment"># ─── parse_ipv4: extract IP header fields from raw bytes ────────────────</span>
-<span class="keyword">def</span> <span class="func">parse_ipv4</span>(data):
-    <span class="comment">"""
-    IPv4 header layout (20 bytes minimum):
-
-      Byte 0    : Version (4 bits) + Header Length (4 bits)
-      Byte 8    : TTL  — how many hops before the packet is discarded
-      Byte 9    : Protocol Number  (6=TCP, 17=UDP, 1=ICMP)
-      Bytes 12-15 : Source IP address
-      Bytes 16-19 : Destination IP address
-
-    struct format string explained:
-      '!'  = network (big-endian) byte order
-      '8x' = skip 8 bytes  (we don't need version/flags/etc)
-      'B'  = 1 unsigned byte  (TTL)
-      'B'  = 1 unsigned byte  (protocol)
-      '2x' = skip 2 bytes  (checksum)
-      '4s' = 4 raw bytes   (source IP)
-      '4s' = 4 raw bytes   (destination IP)
-    """</span>
-    version_ihl = data[<span class="num">0</span>]
-    ihl = (version_ihl &amp; <span class="num">0xF</span>) * <span class="num">4</span>   <span class="comment"># header length in bytes</span>
-
-    ttl, proto, src, dst = <span class="builtin">struct</span>.unpack(
-        <span class="string">"! 8x B B 2x 4s 4s"</span>, data[:<span class="num">20</span>]
-    )
-
-    src_ip = format_ip(src)   <span class="comment"># b'\xc0\xa8\x01\x01' → '192.168.1.1'</span>
-    dst_ip = format_ip(dst)
-
-    <span class="keyword">return</span> ihl, ttl, proto, src_ip, dst_ip, data[ihl:]
-<span class="comment">
-# ─── format_ip: 4 bytes → dotted decimal ────────────────────────────────</span>
-<span class="keyword">def</span> <span class="func">format_ip</span>(raw_bytes):
-    <span class="keyword">return</span> <span class="string">"."</span>.join(<span class="builtin">map</span>(<span class="builtin">str</span>, raw_bytes))
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════
-     PROTOCOL TABLE
-══════════════════════════════════════════ -->
 <section class="proto-section reveal">
   <div class="container">
     <p class="section-label">// protocols decoded</p>
     <h2 class="section-title">What Each Protocol Means</h2>
     <p class="section-sub">NetScope identifies these automatically and colour-codes them.</p>
-
     <table class="proto-table">
-      <thead>
-        <tr>
-          <th>Protocol</th>
-          <th>Number</th>
-          <th>What it's used for</th>
-          <th>Common Ports</th>
-        </tr>
-      </thead>
+      <thead><tr><th>Protocol</th><th>Number</th><th>Used For</th><th>Common Ports</th></tr></thead>
       <tbody>
-        <tr>
-          <td><span class="proto-badge badge-tcp">TCP</span></td>
-          <td style="font-family:var(--mono);color:var(--dim);">6</td>
-          <td>Reliable delivery — web browsing, email, SSH, file transfers</td>
-          <td style="font-family:var(--mono);font-size:0.75rem;color:var(--dim);">80, 443, 22, 25</td>
-        </tr>
-        <tr>
-          <td><span class="proto-badge badge-udp">UDP</span></td>
-          <td style="font-family:var(--mono);color:var(--dim);">17</td>
-          <td>Fast, no handshake — DNS lookups, video calls, online games</td>
-          <td style="font-family:var(--mono);font-size:0.75rem;color:var(--dim);">53, 67, 161, 5353</td>
-        </tr>
-        <tr>
-          <td><span class="proto-badge badge-icmp">ICMP</span></td>
-          <td style="font-family:var(--mono);color:var(--dim);">1</td>
-          <td>Control messages — ping, traceroute, "destination unreachable"</td>
-          <td style="font-family:var(--mono);font-size:0.75rem;color:var(--dim);">No ports</td>
-        </tr>
-        <tr>
-          <td><span class="proto-badge badge-other">GRE</span></td>
-          <td style="font-family:var(--mono);color:var(--dim);">47</td>
-          <td>Tunneling — wraps one protocol inside another (VPNs)</td>
-          <td style="font-family:var(--mono);font-size:0.75rem;color:var(--dim);">No ports</td>
-        </tr>
-        <tr>
-          <td><span class="proto-badge badge-other">ESP</span></td>
-          <td style="font-family:var(--mono);color:var(--dim);">50</td>
-          <td>Encrypted security — IPSec VPN traffic encryption</td>
-          <td style="font-family:var(--mono);font-size:0.75rem;color:var(--dim);">No ports</td>
-        </tr>
+        <tr><td><span class="proto-badge badge-tcp">TCP</span></td><td style="font-family:var(--mono);color:var(--dim);">6</td><td>Reliable delivery — web, email, SSH</td><td style="font-family:var(--mono);font-size:0.75rem;color:var(--dim);">80, 443, 22, 25</td></tr>
+        <tr><td><span class="proto-badge badge-udp">UDP</span></td><td style="font-family:var(--mono);color:var(--dim);">17</td><td>Fast, no handshake — DNS, video, games</td><td style="font-family:var(--mono);font-size:0.75rem;color:var(--dim);">53, 67, 161</td></tr>
+        <tr><td><span class="proto-badge badge-icmp">ICMP</span></td><td style="font-family:var(--mono);color:var(--dim);">1</td><td>Control messages — ping, traceroute</td><td style="font-family:var(--mono);font-size:0.75rem;color:var(--dim);">No ports</td></tr>
+        <tr><td><span class="proto-badge badge-other">ESP</span></td><td style="font-family:var(--mono);color:var(--dim);">50</td><td>VPN encrypted traffic</td><td style="font-family:var(--mono);font-size:0.75rem;color:var(--dim);">No ports</td></tr>
       </tbody>
     </table>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     HOW TO RUN
-══════════════════════════════════════════ -->
-<section class="run-section reveal">
-  <div class="container">
-    <p class="section-label">// getting started</p>
-    <h2 class="section-title">Run It in 3 Steps</h2>
-    <p class="section-sub">No pip install. No setup.py. Just Python 3 and Linux.</p>
-
-    <div class="steps-list">
-      <div class="step-item">
-        <div class="step-num">01</div>
-        <div class="step-content">
-          <div class="step-title">Clone the repository</div>
-          <div class="step-cmd">git clone https://github.com/YOUR_USERNAME/CodeAlpha_NetworkSniffer</div>
-          <div class="step-note">Or download the ZIP from GitHub and extract it.</div>
-        </div>
-      </div>
-
-      <div class="step-item">
-        <div class="step-num">02</div>
-        <div class="step-content">
-          <div class="step-title">Navigate into the folder</div>
-          <div class="step-cmd">cd CodeAlpha_NetworkSniffer</div>
-          <div class="step-note">Make sure sniffer.py is inside this folder.</div>
-        </div>
-      </div>
-
-      <div class="step-item">
-        <div class="step-num">03</div>
-        <div class="step-content">
-          <div class="step-title">Run with sudo (admin rights needed for raw sockets)</div>
-          <div class="step-cmd">sudo python3 sniffer.py</div>
-          <div class="step-note">Press Ctrl+C to stop. A log file will be saved automatically.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════
-     FOOTER
-══════════════════════════════════════════ -->
 <footer>
   <div class="container">
     <div class="footer-inner">
       <div>
         <div class="footer-brand"><span class="net">Net</span>Scope</div>
-        <div style="font-size:0.78rem;color:var(--dim);margin-top:4px;">
-          CodeAlpha Cybersecurity Internship — Task 01
-        </div>
+        <div style="font-size:0.78rem;color:var(--dim);margin-top:4px;">CodeAlpha Cybersecurity Internship — Task 01</div>
       </div>
-      <div class="footer-meta">
-        Built by <span>Mamoon</span><br>
-        UET Peshawar · CSE · Spring 2026<br>
-        <span style="color:var(--dim);">For educational use only.</span>
-      </div>
+      <div class="footer-meta">Built by <span>Mamoon</span><br>UET Peshawar · CSE · Spring 2026<br><span style="color:var(--dim);">For educational use only.</span></div>
     </div>
   </div>
 </footer>
 
 <script>
-  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver(
-    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
-    { threshold: 0.1 }
-  );
+  const observer = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
-
-  // Animate stat numbers
-  function animateNum(el, target) {
-    let start = 0;
-    const step = () => {
-      start += Math.ceil(target / 40);
-      if (start >= target) { el.textContent = target === 300 ? '~300' : target; return; }
-      el.textContent = target === 300 ? '~' + start : start;
-      requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  }
-
-  const statNums = document.querySelectorAll('.stat-num');
-  const targets = [0, 3, 300, 1];
-  const statObserver = new IntersectionObserver(entries => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        animateNum(statNums[i], targets[i]);
-        statObserver.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.5 });
-  statNums.forEach(el => statObserver.observe(el));
 </script>
 </body>
 </html>
