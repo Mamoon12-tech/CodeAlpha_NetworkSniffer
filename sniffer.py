@@ -4,16 +4,32 @@
 ║         🔬 NetScope — Basic Network Sniffer                      ║
 ║         CodeAlpha Cybersecurity Internship | Task 1              ║
 ║         Author  : Mamoon                                         ║
+║         UET Peshawar — Computer Systems Engineering              ║
 ║         Purpose : Capture & Analyze Network Packets              ║
 ╚══════════════════════════════════════════════════════════════════╝
 
   What this program does:
   - Listens to live network traffic on your machine
-  - Captures packets and breaks them down
+  - Captures packets and breaks them down layer by layer
   - Shows you: Source IP, Destination IP, Protocol, Port, Payload
-  - Saves everything to a log file for later review
+  - Colour-codes everything by protocol (TCP/UDP/ICMP)
+  - Saves everything to a log file automatically when you stop
 
-  ⚠️  Run with: sudo python3 sniffer.py  (admin rights needed)
+  ──────────────────────────────────────────────
+  HOW TO RUN (3 steps only):
+
+    Step 1 — Save this file to your Linux machine
+    Step 2 — chmod +x sniffer.py
+    Step 3 — sudo python3 sniffer.py
+
+  Press Ctrl+C to stop. Log file saves automatically.
+  ──────────────────────────────────────────────
+
+  Requirements:
+  - Python 3.6+
+  - Linux OS or WSL
+  - sudo/root access
+  - No pip install needed — only built-in libraries!
 """
 
 # ──────────────────────────────────────────────
@@ -446,3 +462,4 @@ if __name__ == "__main__":
         packet_limit=0,      # 0 = capture until Ctrl+C
         filter_proto=None,   # None = capture all protocols
     )
+
